@@ -1,8 +1,10 @@
 import scala.annotation.tailrec
 
-class ShoppingCart {
+class ShoppingCart(items: List[String]) {
 
-  val cart: List[String] = List()
+  val cart: List[String] = items
+
+  def count: Int = cart.length
 
   def isEmpty: Boolean = cart.isEmpty
 
@@ -13,7 +15,7 @@ class ShoppingCart {
 
   def orangeCount(): Int = cart.count(_.toLowerCase() == "orange")
 
-  private def discount: Int = (this.appleCount / 2) * 60 + (this.orangeCount / 3) * 25
+  def discount: Int = (appleCount / 2) * 60 + (orangeCount / 3) * 25
 
   @tailrec
   final def totalCost(accumulator: Int = 0, n: Int = 0): Float = {
